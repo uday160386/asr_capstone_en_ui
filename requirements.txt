@@ -1,0 +1,9 @@
+SpeechRecognition
+joblib
+fastapi
+uvicorn
+scipy
+pydub
+pillow
+streamlit
+streamlit-audiorecorder
