@@ -49,10 +49,10 @@ def main():
             lang_id =""
             if lang_sel == 'English':
                 lang_id = 'en-IN'
-            elif lang_sel == 'Telugu':
-                lang_id = 'te-IN'
-            elif lang_sel == 'Hindi':
-                lang_id = 'hi-IN'
+            # elif lang_sel == 'Telugu':
+            #     lang_id = 'te-IN'
+            # elif lang_sel == 'Hindi':
+            #     lang_id = 'hi-IN'
           
             result = convert_speech_text(TEMP_AUDIO_FILES+'/'+str(rand_audio_number)+'_'+str(audio.duration_seconds)+'_audio.wav',lang_id)
             text = st.text_area("Audio Transcription:  ", result) 
