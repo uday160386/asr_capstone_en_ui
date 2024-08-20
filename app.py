@@ -7,11 +7,11 @@ from random import randrange
 TEMP_AUDIO_FILES =  "/Users/udaykumar/Documents/workspace/asr_capstone_en_ui/test_audio_files/tmp"
 
 
-def convert_speech_text(audio_file_path, lang_val):
+def convert_speech_text(audio_file_path,lang_id):
     API_URL = "http://localhost:8000/api/audio-file"
     multipart_form_data = {
     'audio_file_path': (None, audio_file_path),
-    'lang_id':lang_val
+    'lang_id': (None, lang_id)
 }
  
     response = requests.post(API_URL,  files=multipart_form_data)
@@ -36,7 +36,7 @@ def main():
 
         lang_sel = st.radio(
             "Set text input label visibility 👉",
-            [":rainbow[English]", ":rainbow[Telugu]", ":rainbow[Hindi]"],
+            ["English", "Telugu", "Hindi"],
         )
 
     with col2:
@@ -44,17 +44,18 @@ def main():
          
         
             audio.export(TEMP_AUDIO_FILES+'/'+str(rand_audio_number)+'_'+str(audio.duration_seconds)+'_audio.wav', format='wav')
-
+            
             st.write(f"Frame rate: {audio.frame_rate}, Frame width: {audio.frame_width}, Duration: {audio.duration_seconds} seconds")
             lang_id =""
             if lang_sel == 'English':
-                lang_id = 'en_ID'
+                lang_id = 'en-IN'
             elif lang_sel == 'Telugu':
-                lang_id = 'en_ID'
+                lang_id = 'te-IN'
             elif lang_sel == 'Hindi':
-                lang_id = 'en_ID'
-            result = convert_speech_text(TEMP_AUDIO_FILES+'/'+str(rand_audio_number)+'_'+str(audio.duration_seconds)+'_audio.wav', lang_id)
-            text = st.text_area("Audio Transcription ", result) 
+                lang_id = 'hi-IN'
+          
+            result = convert_speech_text(TEMP_AUDIO_FILES+'/'+str(rand_audio_number)+'_'+str(audio.duration_seconds)+'_audio.wav',lang_id)
+            text = st.text_area("Audio Transcription:  ", result) 
 
 if __name__ == '__main__':
     main()
