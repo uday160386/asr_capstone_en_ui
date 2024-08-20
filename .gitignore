@@ -162,3 +162,6 @@ cython_debug/
 #.idea/
 
 .DS_Store
+/test_audio_files
+test_audio_files
+*.wav
