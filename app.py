@@ -50,7 +50,6 @@ def main():
                 uploaded_files = st.file_uploader("Choose a .WAV file", type=["wav"],accept_multiple_files=True)
                 if uploaded_files is not None:
                     bytes_to_load=get_bytes_from_wav_upload(uploaded_files)
-  
                     size =len(bytes_to_load)
 
     if choice =='⏺️ - Record':
@@ -74,6 +73,7 @@ def main():
 
                     if choice =='📁 - Upload':
                         for i in range(len(bytes_to_load)):
+                            st.audio(bytes_to_load[i]) 
                             temp_name_value = 'upload_'+str(1980)+'_'+str(i)
                             upload_to_blob.upload_wav_file_content_to_Blob(str(rand_audio_number)+'_'+str(temp_name_value), bytes_to_load[i])
                             result = result+ convert_speech_text(str(rand_audio_number)+'_'+temp_name_value,lang_id)+'\n'
