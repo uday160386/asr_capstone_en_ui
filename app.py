@@ -3,16 +3,10 @@ import streamlit  as st
 from audiorecorder import audiorecorder
 from random import randrange
 
-from pydub import AudioSegment
 from scripts import upload_to_blob
-import glob, os
-
-
-import json
-import zlib
 
 def convert_speech_text(audio_file_path,lang_id):
-    API_URL = "<API URL>"
+    API_URL = "http://localhost:8000/api/audio-file"
     multipart_form_data = {
     'audio_file_path': audio_file_path,
     'lang_id': lang_id
@@ -31,7 +25,7 @@ def main():
                    initial_sidebar_state="expanded")
     
    
-    st.title("Speak to Write - (STW Bot) :blue[cool] :sunglasses:")
+    st.title("ASR for English -  :blue[cool] :sunglasses:")
     with st.sidebar.expander("", expanded=True):
         choice = st.radio(
                         label='Available Options',
@@ -65,14 +59,15 @@ def main():
     
 
     with st.sidebar.expander("", expanded=True):
-            lang_sel = st.radio(
-                "Set text input label visibility 👉",
-                ["English"],
-            ) 
+            lang_id='en-I'
+            # lang_sel = st.radio(
+            #     "Set text input label visibility 👉",
+            #     ["English"],
+            # ) 
             if size > 0:    
                     lang_id =""
-                    if lang_sel == 'English':
-                        lang_id = 'en-IN'
+                    # if lang_sel == 'English':
+                    #     lang_id = 'en-IN'
 
                     rand_audio_number = randrange(100000) 
                     temp_name_value=None
