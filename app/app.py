@@ -6,7 +6,7 @@ from random import randrange
 from scripts import upload_to_blob
 
 def convert_speech_text(audio_file_path,lang_id):
-    API_URL = "http://localhost:8000/api/audio-file"
+    API_URL = "https://asrcapapiservice.ambitiousflower-67f41ae4.southeastasia.azurecontainerapps.io/api/audio-file"
     multipart_form_data = {
     'audio_file_path': audio_file_path,
     'lang_id': lang_id
@@ -47,13 +47,13 @@ def main():
         elif choice == '📁 - Upload':
              with st.sidebar.expander("", expanded=True):
  
-                uploaded_files = st.file_uploader("Choose a .WAV file", type=["wav"],accept_multiple_files=True)
+                uploaded_files = st.file_uploader("Choose a .WAV file", type=["wav","mp3"],accept_multiple_files=True)
                 if uploaded_files is not None:
                     bytes_to_load=get_bytes_from_wav_upload(uploaded_files)
                     size =len(bytes_to_load)
 
     if choice =='⏺️ - Record':
-        st.write(f"Frame rate: {audio.frame_rate}, Frame width: {audio.frame_width}, Duration: {audio.duration_seconds} seconds")
+        st.write(f"Frame rate: '16000', Frame width: {audio.frame_width}, Duration: {audio.duration_seconds} seconds")
 
     
 

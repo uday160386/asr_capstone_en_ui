@@ -1,17 +1,16 @@
 FROM python:3.11-slim
 
-RUN apt-get update && apt-get install -y \
-    curl \
+RUN apt-get update \
+    && apt-get install -y ffmpeg curl qemu-system-arm\
     && rm -rf /var/lib/apt/lists/*
 
-COPY streamlit-prettymapp /app/streamlit-prettymapp/
-
 WORKDIR /app
+COPY ./requirements.txt .
+COPY ./app .
 
-RUN pip3 install -r streamlit-prettymapp/requirements.txt
+RUN python -m pip install --upgrade pip
+RUN pip install -r requirements.txt
 
 EXPOSE 8501
 
-HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
-
-ENTRYPOINT ["streamlit", "run", "streamlit-prettymapp/app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+ENTRYPOINT ["streamlit", "run", "app.py", "--server.port=8501"]
