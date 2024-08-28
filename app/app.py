@@ -53,7 +53,7 @@ def main():
                     size =len(bytes_to_load)
 
     if choice =='⏺️ - Record':
-        st.write(f"Frame rate: '16000', Frame width: {audio.frame_width}, Duration: {audio.duration_seconds} seconds")
+        st.write(f"Duration: {audio.duration_seconds} seconds")
 
     
 
