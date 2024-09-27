@@ -14,5 +14,8 @@ pip install -r requirements.txt
 ## Build and run?
     streamlit run app/app.py
 
-        
+## Result:
+![screenshot](./images/Picture1.png)
+
+![screenshot](./images/Picture2.png)
         

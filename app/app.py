@@ -38,7 +38,8 @@ def main():
         if choice =='⏺️ - Record':
             result=''
             st.subheader("- make notes by recording - ",divider=True)
-            audio = audiorecorder("Click to record", "Click to stop recording")
+            audio = audiorecorder("Click to record", "Click to stop recording",)
+            
             bytes_to_load=audio.export().read()
             st.audio(bytes_to_load) 
             size=len(audio)
